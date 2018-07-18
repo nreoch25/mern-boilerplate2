@@ -4,7 +4,9 @@
   "description": "social network using the mern stack",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.production.js && webpack --mode=production --config webpack.config.server.js",
     "server": "nodemon",
+    "start": "NODE_ENV=production node ./dist/server.generated.js",
     "clean": "rimraf dist"
   },
   "author": "Nigel Reoch",
@@ -20,6 +22,7 @@
     "passport-jwt": "^4.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
