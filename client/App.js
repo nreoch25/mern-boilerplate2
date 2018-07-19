@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 // Components
-import Index from "./components/Index";
-
+import Index from "./components/pages/Index";
 class App extends Component {
   render() {
     return (

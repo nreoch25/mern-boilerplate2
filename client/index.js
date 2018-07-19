@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { AppContainer } from "react-hot-loader";
 import store from "./store";
 import App from "./App";
+import "./assets/css/app.css";
 
 const mountApp = document.getElementById("root");
 
