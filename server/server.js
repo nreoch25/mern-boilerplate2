@@ -3,6 +3,8 @@ import path from "path";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import passport from "passport";
+// Dev Server
+import devServer from "./utils/dev-server";
 // React App
 import reactApp from "./utils/react-app";
 mongoose.Promise = global.Promise;
@@ -12,6 +14,8 @@ import config from "./config/keys";
 // Initialize app
 const CURRENT_WORKING_DIR = process.cwd();
 const app = express();
+// Initialize webpack dev middleware
+devServer(app);
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -29,7 +33,7 @@ require("./config/passport")(passport);
 
 app.use("/api/users", users);
 
-app.use(express.static(path.join(CURRENT_WORKING_DIR, "dist")));
+app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 // React Application
 app.get("*", reactApp);

@@ -4,9 +4,11 @@
   "description": "social network using the mern stack",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon",
     "build": "webpack --config webpack.config.production.js && webpack --mode=production --config webpack.config.server.js",
-    "server": "nodemon",
+    "server": "NODE_ENV=production webpack --mode=production --config webpack.config.server.js",
     "start": "NODE_ENV=production node ./dist/server.generated.js",
+    "prod": "npm run clean && npm run build && npm run server && npm run start",
     "clean": "rimraf dist"
   },
   "author": "Nigel Reoch",
