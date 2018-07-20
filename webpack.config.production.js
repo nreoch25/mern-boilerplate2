@@ -1,3 +1,4 @@
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const CURRENT_WORKING_DIR = process.cwd();
 
@@ -18,14 +19,20 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          {
+            loader: MiniCSSExtractPlugin.loader
+          },
+          "css-loader"
+        ]
       },
       {
         test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
         use: "file-loader"
       }
     ]
-  }
+  },
+  plugins: [new MiniCSSExtractPlugin()]
 };
 
 module.exports = config;
