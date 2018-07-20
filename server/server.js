@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import passport from "passport";
 // Dev Server
 import devServer from "./utils/dev-server";
@@ -19,6 +20,8 @@ devServer(app);
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// Cookie parser middleware
+app.use(cookieParser());
 // Connect to MongoDB
 mongoose
   .connect(config.mongoURI)

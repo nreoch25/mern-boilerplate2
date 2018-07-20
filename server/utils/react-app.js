@@ -7,6 +7,7 @@ import App from "../../client/App.js";
 import renderer from "./renderer";
 
 const reactApp = (req, res) => {
+  console.log(req.cookies);
   const context = {};
   const appWithRouter = (
     <Provider store={store}>

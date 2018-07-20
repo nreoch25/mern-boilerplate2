@@ -11,11 +11,11 @@ import App from "./App";
 import "./assets/css/app.css";
 
 // Check for token
-if (localStorage.jwtToken) {
+if (localStorage.mernToken) {
   // Set auth token header auth
-  setAuthToken(localStorage.jwtToken);
+  setAuthToken(localStorage.mernToken);
   // Decode token and get user info and expiration
-  const decoded = jwt_decode(localStorage.jwtToken);
+  const decoded = jwt_decode(localStorage.mernToken);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
   // Check for expired token
