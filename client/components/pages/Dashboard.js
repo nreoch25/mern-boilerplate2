@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getCurrentUser } from "../../actions/authActions";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
   render() {
     return (
       <div>
@@ -10,4 +15,7 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default connect(
+  null,
+  { getCurrentUser }
+)(Dashboard);

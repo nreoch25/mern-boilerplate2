@@ -49,6 +49,14 @@ export const setCurrentUser = decoded => {
   };
 };
 
+// Set Current User
+export const getCurrentUser = () => dispatch => {
+  axios
+    .get("/api/users/current")
+    .then(response => console.log(response.data))
+    .catch(err => console.log(err.response.data));
+};
+
 // Log user out
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
