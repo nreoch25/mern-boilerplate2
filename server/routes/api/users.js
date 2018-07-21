@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
           keys.secretOrKey,
           { expiresIn: 3600 },
           (err, token) => {
-            res.cookie("mernCookie", `Bearer ${token}`, {
+            res.cookie("mernCookie", token, {
               maxAge: 3600000,
               httpOnly: true
             });

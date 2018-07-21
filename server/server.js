@@ -32,7 +32,11 @@ mongoose
 app.use(passport.initialize());
 
 // Passport config
-require("./config/passport")(passport);
+// Need 2 JWT strategies
+// header is for API requests
+// cookie is for the Initial App Request Server Side Authentication
+require("./config/passport-header")(passport);
+require("./config/passport-cookie")(passport);
 
 app.use("/api/users", users);
 
