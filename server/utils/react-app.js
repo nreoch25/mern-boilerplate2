@@ -3,19 +3,20 @@ import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import passport from "passport";
-import store from "../../client/store";
+import configureStore from "../../client/store";
 import App from "../../client/App.js";
 import renderer from "./renderer";
 
 const reactApp = (req, res, next) => {
   passport.authenticate("cookie", (err, user, info) => {
     if (user) {
-      console.log(
-        "USER IS AUTHENTICATED - NEED TO LOAD USER DATE INTO INITIAL STATE"
-      );
+      console.log("USER IS AUTHENTICATED");
     } else {
-      console.log("USER IS NOT AUTHENTICATED - PROCEED");
+      console.log("USER IS NOT AUTENTICATED");
     }
+    const initialState = {};
+    const store = configureStore(initialState);
+    console.log("STORE", store);
     const context = {};
     const appWithRouter = (
       <Provider store={store}>
@@ -27,8 +28,9 @@ const reactApp = (req, res, next) => {
     if (context.url) {
       return res.redirect(context.url);
     }
-    const finalState = store.getState();
+
     const initialView = renderToString(appWithRouter);
+    const finalState = store.getState();
     res
       .set("Content-Type", "text/html")
       .status(200)

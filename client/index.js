@@ -4,11 +4,13 @@ import { hydrate } from "react-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { AppContainer } from "react-hot-loader";
-import store from "./store";
+import configureStore from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import App from "./App";
 import "./assets/css/app.css";
+
+const store = configureStore(window.__INITIAL_STATE__);
 
 // Check for token
 if (localStorage.mernToken) {
