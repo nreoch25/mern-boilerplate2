@@ -8,15 +8,17 @@ import App from "../../client/App.js";
 import renderer from "./renderer";
 
 const reactApp = (req, res, next) => {
+  let store;
   passport.authenticate("cookie", (err, user, info) => {
     if (user) {
-      console.log("USER IS AUTHENTICATED");
+      const { name, email, avatar } = user;
+      store = configureStore({
+        auth: { isAuthenticated: true, user: { name, email, avatar } },
+        errors: {}
+      });
     } else {
-      console.log("USER IS NOT AUTENTICATED");
+      store = configureStore({});
     }
-    const initialState = {};
-    const store = configureStore(initialState);
-    console.log("STORE", store);
     const context = {};
     const appWithRouter = (
       <Provider store={store}>
