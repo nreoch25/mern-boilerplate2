@@ -59,6 +59,10 @@ export const getCurrentUser = () => dispatch => {
 
 // Log user out
 export const logoutUser = () => dispatch => {
+  axios
+    .post("/api/users/logout")
+    .then(response => console.log(response.data))
+    .catch(err => console.log(err.response.data));
   // Remove token from local storage
   localStorage.removeItem("mernToken");
   // Remove auth header for future requests

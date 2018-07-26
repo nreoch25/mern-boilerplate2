@@ -106,4 +106,16 @@ router.get(
   }
 );
 
+// @route   POST api/users/logout
+// @desc    Logout current user
+// @access  Private
+router.post(
+  "/logout",
+  passport.authenticate("header", { session: false }),
+  (req, res) => {
+    res.clearCookie("mernCookie");
+    res.json({ message: "user logged out!" });
+  }
+);
+
 module.exports = router;
