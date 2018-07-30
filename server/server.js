@@ -11,6 +11,8 @@ import reactApp from "./utils/react-app";
 mongoose.Promise = global.Promise;
 // Api
 import users from "./routes/api/users";
+import profile from "./routes/api/profile";
+// config
 import config from "./config/keys";
 // Initialize app
 const CURRENT_WORKING_DIR = process.cwd();
@@ -37,9 +39,10 @@ app.use(passport.initialize());
 // cookie is for the Initial App Request Server Side Authentication
 require("./config/passport-header")(passport);
 require("./config/passport-cookie")(passport);
-
+// Api Routes
 app.use("/api/users", users);
-
+app.use("/api/profile", profile);
+// Static directory
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
 // React Application
