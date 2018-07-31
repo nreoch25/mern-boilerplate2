@@ -12,6 +12,7 @@ mongoose.Promise = global.Promise;
 // Api
 import users from "./routes/api/users";
 import profile from "./routes/api/profile";
+import posts from "./routes/api/posts";
 // config
 import config from "./config/keys";
 // Initialize app
@@ -42,6 +43,7 @@ require("./config/passport-cookie")(passport);
 // Api Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
+app.use("/api/posts/", posts);
 // Static directory
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 

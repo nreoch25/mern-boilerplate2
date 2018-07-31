@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 // Components
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import Index from "./components/pages/Index";
 import Dashboard from "./components/pages/Dashboard";
 import Register from "./components/auth/Register";
@@ -11,6 +12,9 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import CreateProfile from "./components/profile/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
+import Posts from "./components/pages/Posts";
+import Post from "./components/pages/Post";
+import NotFound from "./components/pages/NotFound";
 
 class App extends Component {
   render() {
@@ -40,7 +44,15 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/profile/:handle" component={Profile} />
           </Switch>
+          <Switch>
+            <PrivateRoute exact path="/feed" component={Posts} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/post/:id" component={Post} />
+          </Switch>
+          <Route exact path="/not-found" component={NotFound} />
         </div>
+        <Footer />
       </div>
     );
   }
